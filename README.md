@@ -14,17 +14,16 @@ This script helps you create mdev devices with Nvidia vGPU profiles. It automate
 The script requires root privileges to run. It takes the following arguments:
 
 * **Required arguments:**
-  * `-p` or `--profile`: The Nvidia vGPU profile to use.
-  * `-n` or `--number`: The number of mdev devices to create.
+* `-p` or `--profile`: The Nvidia vGPU profile to use.
+* `-n` or `--number`: The number of mdev devices to create.
 
 * **Optional arguments:**
-  * `-f` or `--file`: The name of the file to store UUIDs (default: `vgpu`).
-  * `-F` or `--folder`: The base folder for storing UUIDs and XML files (default: `/vgpu`).
+* `-f` or `--file`: The name of the file to store UUIDs (default: `vgpu`).
+* `-F` or `--folder`: The base folder for storing UUIDs and XML files (default: `/vgpu`).
 
 To run the script, use the following command:
 
-```bash
-sudo ./vgpu_mdev_creator.sh -p <Nvidia_Profile> -n <Number_of_mdev_devices> [-f <file_name>] [-F <base_folder>]```
+    sudo ./vgpu_mdev_creator.sh  -p  <Nvidia_Profile>  -n  <Number_of_mdev_devices> [-f <file_name>] [-F <base_folder>]
 
 Replace `<Nvidia_Profile>` with the desired Nvidia vGPU profile, `<Number_of_mdev_devices>` with the number of mdev devices you want to create, and optionally specify `<file_name>` and `<base_folder>` if you want to use non-default values.
 
@@ -32,13 +31,13 @@ Replace `<Nvidia_Profile>` with the desired Nvidia vGPU profile, `<Number_of_mde
 
 To create 2 mdev devices with the `nvidia-63` profile, you can run the script as follows:
 
-```sudo ./vgpu_mdev_creator.sh -p nvidia-63 -n 2```
+    sudo ./vgpu_mdev_creator.sh -p nvidia-63 -n  2
 
 This command will create 2 mdev devices using the `nvidia-63` profile and store the UUIDs in the `/vgpu/vgpu.uuid` file. It will also create XML files in the /vgpu/vgpu-dev/ folder for each UUID.
 
 If you want to use a custom file name and folder, you can run the script as follows:
 
-```sudo ./vgpu_mdev_creator.sh -p nvidia-63 -n 2 -f custom_vgpu -F /custom_vgpu```
+    sudo ./vgpu_mdev_creator.sh -p nvidia-63 -n  2  -f custom_vgpu -F /custom_vgpu
 
 This command will create 2 mdev devices using the `nvidia-63` profile and store the UUIDs in the `/custom_vgpu/custom_vgpu.uuid` file. It will also create XML files in the `/custom_vgpu/custom_vgpu-uuid/` folder for each UUID.
 
