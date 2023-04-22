@@ -7,13 +7,13 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # Parse command line arguments
-while getopts ":P:n:f:F:" opt; do
+while getopts ":p:n:f:F:" opt; do
     case $opt in
-        P) profile="$OPTARG" ;;
+        p) profile="$OPTARG" ;;
         n) number="$OPTARG" ;;
         f) file_name="$OPTARG" ;;
         F) folder="$OPTARG" ;;
-        *) echo "Usage: $0 -P <Nvidia Profile> -n <Number of mdev devices> [-f <file name>] [-F <base folder>]" >&2
+        *) echo "Usage: $0 -p <Nvidia Profile> -n <Number of mdev devices> [-f <file name>] [-F <base folder>]" >&2
            exit 1 ;;
     esac
 done
@@ -41,14 +41,14 @@ gpu_address=$(echo "$gpu_output" | grep "pci@" | sed "${gpu_number}q;d" | awk '{
 mkdir -p "$folder"
 
 # Check for the existence of UUIDs file and append new UUIDs to it
-uuids_file="$folder/$file_name.uuid"
+uuids_file="$folder/$file_name"
 touch "$uuids_file"
 for i in $(seq 1 "$number"); do
     uuid=$(uuidgen)
     echo "$uuid" >> "$uuids_file"
 
     # Create XML files for each UUID
-    xml_file="$folder/$file_name/$(basename "$uuid").xml"
+    xml_file="$folder/$file_name-dev/$(basename "$uuid").xml"
     mkdir -p "$(dirname "$xml_file")"
     cat > "$xml_file" <<- EOM
 <device>
